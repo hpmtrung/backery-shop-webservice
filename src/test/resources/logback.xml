@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration scan="true">
+
+<!--    <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+
+    <!-- Additional -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>TRACE</level>
+            </filter>
+            <encoder>
+                <Pattern>%d %-5p [%t]:%X{txId} %c{1} - %m%n</Pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <logger name="org.hibernate" level="warn"/>
+        <logger name="org.hibernate.hql" level="info"/>
+        <logger name="org.hibernate.event.internal" level="info"/>
+        <logger name="org.hibernate.engine.transaction.internal" level="info"/>
+        <logger name="org.hibernate.cache" level="debug"/>
+        <logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="info"/>
+        <logger name="org.hibernate.SQL_SLOW" level="info"/>
+        <logger name="net.ttddyy.dsproxy.listener" level="debug"/>
+    <!-- End: Additional   -->
+
+<!--    <logger name="com.bakery.shop" level="debug"/>-->
+    <logger name="com.bakery.shop" level="info, debug, warn"/>
+
+<!--    <logger name="tech.jhipster" level="debug"/>-->
+    <logger name="tech.jhipster" level="warn"/>
+
+    <logger name="javax.activation" level="warn"/>
+    <logger name="javax.mail" level="warn"/>
+    <logger name="javax.xml.bind" level="warn"/>
+    <logger name="ch.qos.logback" level="warn"/>
+    <logger name="com.jayway.jsonpath" level="warn"/>
+    <logger name="com.ryantenney" level="warn"/>
+    <logger name="com.sun" level="warn"/>
+    <logger name="com.zaxxer" level="warn"/>
+    <logger name="com.github.dockerjava" level="warn"/>
+    <logger name="org.testcontainers" level="warn"/>
+    <logger name="io.undertow" level="warn"/>
+    <logger name="io.undertow.websockets.jsr" level="error"/>
+<!--    <logger name="org.ehcache" level="info"/>-->
+    <logger name="org.ehcache" level="off"/>
+    <logger name="org.apache" level="warn"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+    <logger name="org.bson" level="warn"/>
+    <logger name="org.hibernate.validator" level="warn"/>
+<!--    <logger name="org.hibernate" level="warn"/>-->
+    <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
+    <logger name="org.springframework" level="warn"/>
+    <logger name="org.springframework.web" level="warn"/>
+    <logger name="org.springframework.security" level="warn"/>
+    <logger name="org.springframework.cache" level="warn"/>
+    <logger name="org.thymeleaf" level="warn"/>
+    <logger name="org.xnio" level="warn"/>
+    <logger name="com.microsoft.sqlserver.jdbc.internals" level="warn"/>
+    <logger name="io.swagger.v3" level="info"/>
+    <logger name="sun.rmi" level="warn"/>
+    <logger name="liquibase" level="warn"/>
+    <logger name="LiquibaseSchemaResolver" level="info"/>
+    <logger name="sun.rmi.transport" level="warn"/>
+    <logger name="com.tngtech.archunit.core.importer" level="error"/>
+
+    <root>
+        <level>warn</level>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

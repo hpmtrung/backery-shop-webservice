@@ -1,0 +1,447 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="DELL (generated)" id="1644802835092-1">
+        <createTable tableName="ProductVariant">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ProductVariant"/>
+            </column>
+            <column computed="false" name="productId" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="typeId" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <!--            <column computed="false" name="cost" type="float">-->
+            <column computed="false" name="cost" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+            <!--            <column computed="false" name="price" type="float">-->
+            <column computed="false" name="price" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="hot" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="available" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/ProductVariant.csv"
+            separator=","
+            tableName="ProductVariant"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="productId" type="NUMERIC"/>
+            <column name="typeId" type="NUMERIC"/>
+            <!--            <column name="cost" type="floatType"/>-->
+            <column name="cost" type="NUMERIC"/>
+            <!--            <column name="price" type="floatType"/>-->
+            <column name="price" type="NUMERIC"/>
+            <column name="hot" type="BOOLEAN"/>
+            <column name="available" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-2">
+        <createTable tableName="Order">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_Order"/>
+            </column>
+            <column computed="false" name="accountId" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="createdAt" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <!--            <column computed="false" name="total" type="float">-->
+            <column computed="false" name="total" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="address" type="NVARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" defaultValueConstraintName="DF__Order__paymentMe__300424B4" name="paymentMethod"
+                    type="BOOLEAN(1)">
+                <constraints nullable="false"/>
+            </column>
+            <!--            <column computed="false" name="statusId" type="TINYINT(3)">-->
+            <column computed="false" name="statusId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="note" type="NVARCHAR(300)"/>
+            <!--            <column computed="false" name="profit" type="float">-->
+            <column computed="false" name="profit" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/Order.csv"
+            separator=","
+            tableName="Order"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="accountId" type="NUMERIC"/>
+            <column name="createdAt" type="datetimeType"/>
+            <column name="total" type="Decimal"/>
+            <column name="address" type="STRING"/>
+            <column name="paymentMethod" type="BOOLEAN"/>
+            <column name="statusId" type="NUMERIC"/>
+            <column name="note" type="STRING"/>
+            <!--            <column name="profit" type="floatType" />-->
+            <column name="profit" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-3">
+        <createTable tableName="Product">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_Product"/>
+            </column>
+            <column computed="false" name="name" type="NVARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="categoryId" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="ingredients" type="NVARCHAR(255)"/>
+            <column computed="false" name="allergens" type="NVARCHAR(255)"/>
+            <column computed="false" defaultValueConstraintName="DF__Product__availab__30F848ED" name="available"
+                    type="BOOLEAN(1)"/>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/Product.csv"
+            separator=","
+            tableName="Product"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="categoryId" type="NUMERIC"/>
+            <column name="ingredients" type="STRING"/>
+            <column name="allergens" type="STRING"/>
+            <column name="available" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-4">
+        <createTable tableName="Account">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_UserInfo"/>
+            </column>
+            <column computed="false" name="lastName" type="NVARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="firstName" type="NVARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="avatar" type="VARCHAR(100)"/>
+            <column computed="false" name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="phone" type="VARCHAR(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="address" type="NVARCHAR(255)"/>
+            <column computed="false" defaultValueConstraintName="DF_UserInfo_activated" name="activated"
+                    type="BOOLEAN(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="password" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="langKey" type="VARCHAR(2)"/>
+            <column computed="false" name="activationKey" type="VARCHAR(20)"/>
+            <column computed="false" name="resetKey" type="VARCHAR(20)"/>
+            <column computed="false" name="resetDate" type="TIMESTAMP"/>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/Account.csv"
+            separator=","
+            tableName="Account"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="lastName" type="STRING"/>
+            <column name="firstName" type="STRING"/>
+            <column name="avatar" type="STRING"/>
+            <column name="email" type="STRING"/>
+            <column name="phone" type="STRING"/>
+            <column name="address" type="STRING"/>
+            <column name="activated" type="BOOLEAN"/>
+            <column name="password" type="STRING"/>
+            <column name="langKey" type="STRING"/>
+            <column name="activationKey" type="STRING"/>
+            <column name="resetKey" type="STRING"/>
+            <column name="resetDate" type="datetimeType"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-5">
+        <createTable tableName="AccountsAuthorities">
+            <column computed="false" name="accountId" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__Accounts__2ED0CABD60274B2A"/>
+            </column>
+            <column computed="false" name="authorityName" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__Accounts__2ED0CABD60274B2A"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/AccountsAuthorities.csv"
+            separator=","
+            tableName="AccountsAuthorities"
+            usePreparedStatements="true">
+            <column name="accountId" type="NUMERIC"/>
+            <column name="authorityName" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-6">
+        <createTable tableName="OrderDetail">
+            <column computed="false" name="oderId" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_OrderDetail"/>
+            </column>
+            <column computed="false" name="variantId" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_OrderDetail"/>
+            </column>
+            <column computed="false" name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <!--            <column computed="false" name="unitPrice" type="float">-->
+            <column computed="false" name="unitPrice" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/OrderDetail.csv"
+            separator=","
+            tableName="OrderDetail"
+            usePreparedStatements="true">
+            <column name="oderId" type="NUMERIC"/>
+            <column name="variantId" type="NUMERIC"/>
+            <column name="quantity" type="NUMERIC"/>
+            <!--            <column name="unitPrice" type="floatType" />-->
+            <column name="unitPrice" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-7">
+        <createTable tableName="ProductImage">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ProductImage"/>
+            </column>
+            <column computed="false" name="productId" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="imagePath" type="NVARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/ProductImage.csv"
+            separator=","
+            tableName="ProductImage"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="productId" type="NUMERIC"/>
+            <column name="imagePath" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-9">
+        <createTable tableName="Authority">
+            <column computed="false" name="name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__Authorit__72E12F1AED9EC568"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/Authority.csv"
+            separator=","
+            tableName="Authority"
+            usePreparedStatements="true">
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-10">
+        <createTable tableName="Category">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_Category"/>
+            </column>
+            <column computed="false" name="name" type="NVARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="image" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="icon" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column computed="false" name="banner" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/Category.csv"
+            separator=","
+            tableName="Category"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="image" type="STRING"/>
+            <column name="icon" type="STRING"/>
+            <column name="banner" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-11">
+        <createTable tableName="ProductType">
+            <column autoIncrement="true" computed="false" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_Size"/>
+            </column>
+            <column computed="false" name="name" type="NVARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/ProductType.csv"
+            separator=","
+            tableName="ProductType"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-12">
+        <createTable tableName="Status">
+            <!--            <column autoIncrement="true" computed="false" name="id" type="TINYINT(3)">-->
+            <column autoIncrement="true" computed="false" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_Status"/>
+            </column>
+            <column computed="false" name="name" type="NVARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+            file="config/liquibase/data/Status.csv"
+            separator=","
+            tableName="Status"
+            usePreparedStatements="true">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-13">
+        <addUniqueConstraint columnNames="productId, typeId" constraintName="UC_ProductVariant"
+                             tableName="ProductVariant"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-14">
+        <addUniqueConstraint columnNames="name" constraintName="UC_ProductName" tableName="Product"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-15">
+        <addUniqueConstraint columnNames="email" constraintName="UC_UserInfoEmail" tableName="Account"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-16">
+        <addForeignKeyConstraint baseColumnNames="accountId" baseTableName="AccountsAuthorities"
+                                 constraintName="FK__AccountsA__accou__5EBF139D" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="Account" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-17">
+        <addForeignKeyConstraint baseColumnNames="oderId" baseTableName="OrderDetail"
+                                 constraintName="FK_OderDetail_Oder" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="Order" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-18">
+        <addForeignKeyConstraint baseColumnNames="variantId" baseTableName="OrderDetail"
+                                 constraintName="FK_OderDetail_Variant" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="ProductVariant" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-19">
+        <addForeignKeyConstraint baseColumnNames="productId" baseTableName="ProductImage"
+                                 constraintName="FK_ProductImage_Product" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="Product" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-20">
+        <addUniqueConstraint columnNames="imagePath" constraintName="UC_ProductImagePath" tableName="ProductImage"/>
+    </changeSet>
+    <!--    <changeSet author="DELL (generated)" id="1644802835092-21">-->
+    <!--        <addForeignKeyConstraint baseColumnNames="email" baseTableName="VerificationToken" constraintName="FK_VerificationToken_Account" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="CASCADE" referencedColumnNames="email" referencedTableName="Account" validate="true"/>-->
+    <!--    </changeSet>-->
+    <!--    <changeSet author="DELL (generated)" id="1644802835092-22">-->
+    <!--        <addUniqueConstraint columnNames="email" constraintName="UQ__Verifica__AB6E6164A50B79B0" tableName="VerificationToken"/>-->
+    <!--    </changeSet>-->
+    <!--    <changeSet author="DELL (generated)" id="1644802835092-23">-->
+    <!--        <addUniqueConstraint columnNames="token" constraintName="UQ__Verifica__CA90DA7AE3104F3E" tableName="VerificationToken"/>-->
+    <!--    </changeSet>-->
+    <changeSet author="DELL (generated)" id="1644802835092-24">
+        <addUniqueConstraint columnNames="name" constraintName="UC_CategoryName" tableName="Category"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-25">
+        <addUniqueConstraint columnNames="name" constraintName="UC_SizeName" tableName="ProductType"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-26">
+        <addUniqueConstraint columnNames="name" constraintName="UC_StatusName" tableName="Status"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-27">
+        <addForeignKeyConstraint baseColumnNames="productId" baseTableName="ProductVariant"
+                                 constraintName="FK_ProductVariant_Product" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="Product" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-28">
+        <addForeignKeyConstraint baseColumnNames="typeId" baseTableName="ProductVariant"
+                                 constraintName="FK_ProductVariant_Size" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="ProductType" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-29">
+        <addForeignKeyConstraint baseColumnNames="accountId" baseTableName="Order" constraintName="FK_Order_Account"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="CASCADE"
+                                 referencedColumnNames="id" referencedTableName="Account" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-30">
+        <addForeignKeyConstraint baseColumnNames="statusId" baseTableName="Order" constraintName="FK_Order_Status"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="Status" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-31">
+        <addForeignKeyConstraint baseColumnNames="categoryId" baseTableName="Product"
+                                 constraintName="FK_Product_Category" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="Category" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-32">
+        <addForeignKeyConstraint baseColumnNames="authorityName" baseTableName="AccountsAuthorities"
+                                 constraintName="FK__AccountsA__autho__5FB337D6" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="name" referencedTableName="Authority" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-33">
+        <createSequence cycle="false" incrementBy="50" maxValue="9223372036854775807" minValue="-9223372036854775808"
+                        sequenceName="sequence_generator" startValue="1050"/>
+    </changeSet>
+    <!--    <changeSet author="DELL (generated)" id="1644802835092-34">-->
+    <!--        <createView fullDefinition="true" viewName="ProductWithMinPrice">null</createView>-->
+    <!--    </changeSet>-->
+    <changeSet author="DELL (generated)" id="1644802835092-34">
+        <createTable tableName="CartDetail">
+            <column computed="false" name="accountId" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__CartDeta__34F961AC00533BD9"/>
+            </column>
+            <column computed="false" name="variantId" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK__CartDeta__34F961AC00533BD9"/>
+            </column>
+            <column computed="false" name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!-- Cart detail table is empty -->
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-35">
+        <addForeignKeyConstraint baseColumnNames="accountId" baseTableName="CartDetail"
+                                 constraintName="FK__CartDetai__accou__6477ECF3" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="Account" validate="true"/>
+    </changeSet>
+    <changeSet author="DELL (generated)" id="1644802835092-36">
+        <addForeignKeyConstraint baseColumnNames="variantId" baseTableName="CartDetail"
+                                 constraintName="FK__CartDetai__varia__656C112C" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="ProductVariant" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

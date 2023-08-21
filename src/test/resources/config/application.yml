@@ -1,0 +1,121 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration is used for unit/integration tests.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+spring:
+  #     Uncomment two following line to enable tests against production database type rather than H2, using Testcontainers
+  #  profiles:
+  #    active: testcontainers
+  application:
+    name: bakeryshop
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    #    url: jdbc:h2:mem:bakeryshop;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:sqlserver://localhost:1433;database=BAKERY_SHOP
+    username: sa
+    password: 123
+    hikari:
+      auto-commit: false
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
+  jpa:
+    #    database-platform: tech.jhipster.domain.util.FixedH2Dialect
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        #        #        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        #        #        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.hbm2ddl.auto: none
+      #      hibernate.hbm2ddl.auto: validate
+      #      hibernate.hbm2ddl.auto: create-drop
+      hibernate.jdbc.time_zone: UTC
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+    show-sql: true
+  #      hibernate.default_schema: PUBLIC
+  liquibase:
+    contexts: test, faker
+    enabled: false
+  #    default-schema: PUBLIC
+  mail:
+    host: localhost
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+  task:
+    execution:
+      thread-name-prefix: bakeryshop-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: bakeryshop-scheduling-
+      pool:
+        size: 1
+  thymeleaf:
+    mode: HTML
+
+server:
+  port: 10344
+  address: localhost
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  clientApp:
+    name: 'bakeryshopApp'
+  logging:
+    # To test json console appender
+    use-json-format: false
+    logstash:
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
+  mail:
+    from: test@localhost
+    base-url: http://127.0.0.1:8080
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+        base64-secret: YWM4MmI5MWJjYTg3ZTIwMjkzNjViZGQ5ZTQ5YjU5NzU0ZWY0ZGQyZWNhNjFmZDViYmI3OTg3N2RhOGQyMGYyMmM5Mjk3ZDkyMDk3NzcxYzdkNjI3ZTNjODM4ZWI0NTIxZTg3ODFmYWQyNTRiMjhmZmYzMDZmN2Q1MTM0MmU4NmM=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
